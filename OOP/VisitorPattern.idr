@@ -23,10 +23,10 @@ dynamic dt = (t ** dt)
 ||| An implemented function with type `DynamicAcceptor d pointer` should enable the caller to
 |||    "visit" every part of the `pointer` object from which we can project a `Dynamic d`.
 public export
-DynamicAcceptor: (Type -> Type) -> Type -> Type
+0 DynamicAcceptor: (Type -> Type) -> Type -> Type
 DynamicAcceptor d pointer =
-   {f: Type -> Type} -> {auto Applicative: Applicative f} ->
-   {a: Type} -> {auto Monoid: Monoid a} ->
+   {0 f: Type -> Type} -> {auto Applicative: Applicative f} ->
+   {0 a: Type} -> {auto Monoid: Monoid a} ->
    pointer -> (Dynamic d -> f a) -> f a
 
 public export
@@ -41,7 +41,7 @@ extendWith ex dt = dynamic (dt, extension)
 
 ||| A `Dynamic` value can be made `Visitable` by pairing it with a `DynamicAcceptor`.
 public export
-Visitable: (Type -> Type) -> Type
+0 Visitable: (Type -> Type) -> Type
 Visitable d = d `ExtendWith` DynamicAcceptor d
 
 ||| `DynamicVisit` provides a name for visitable types to implement their canonical visitation
